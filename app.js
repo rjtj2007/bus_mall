@@ -1,13 +1,13 @@
 'use strict';
 console.log('Good Morning!');
 //array for object storage
-var allItem = [];
+var allItems = [];
 
 //object with constructor function
 function Item(name, filepath) {
   this.name = name;
   this.filepath = filepath;
-  allItem.push(this);
+  allItems.push(this);
 }
 
 // //make new instance of items for above function
@@ -38,12 +38,49 @@ imgEl.addEventListener('click', randomItem);
 
 //display picture randomly
 function randomItem() {
-  var randomIndex = Math.floor(Math.random() * allItem.length);
-  return allItem[randomIndex].filepath;
+  var randomIndex = Math.floor(Math.random() * allItems.length);
+  return allItems[randomItem].filepath;
 }
 randomItem();
-
 //
-var leftImg.src = itemArray[randomItem()].filePath;
-var centerImg.src = itemArray[randomItem()].filePath;
-var rightImg.src = itemArray[randomItem()].filePath;
+//
+//
+//
+//
+//
+// function images() {
+//   if (surveyLength > 24) {
+//     surveyEnd();
+//   }
+//   lastIndex = [];
+//
+//  lastIndex.push(randomIndex1);
+//   lastIndex.push(randomIndex2);
+//   lastIndex.push(randomIndex3);
+//
+//  //reassigning the variables foreach picture
+//   randomIndex1 = Math.floor(Math.random() * itemArray.length);
+//   randomIndex2 = Math.floor(Math.random() * itemArray.length);
+//   randomIndex3 = Math.floor(Math.random() * itemArray.length);
+//
+//  //while loop to stop items doubling up or diplaying right after another
+//
+//  while (randomIndex1 === lastIndex[0] || randomIndex1 === lastIndex[1] || randomIndex1 === lastIndex[2] || randomIndex2 === lastIndex[0] || randomIndex2 === lastIndex[1] || randomIndex2 === lastIndex[2] || randomIndex3 === lastIndex[0] || randomIndex3 === lastIndex[1] || randomIndex3 === lastIndex[2] || randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3) {
+//
+//    randomIndex1 = Math.floor(Math.random() * itemArray.length);
+//     randomIndex2 = Math.floor(Math.random() * itemArray.length);
+//     randomIndex3 = Math.floor(Math.random() * itemArray.length);
+//   }
+//
+//  //image sources
+//   leftImg.src = itemArray[randomIndex1].filePath;
+//   centerImg.src = itemArray[randomIndex2].filePath;
+//   rightImg.src = itemArray[randomIndex3].filePath;
+//
+//  //adds 1 to times displayed for each object
+//
+//  itemArray[randomIndex1].timesDisplayed += 1;
+//   itemArray[randomIndex2].timesDisplayed += 1;
+//   itemArray[randomIndex3].timesDisplayed += 1;
+//
+// }

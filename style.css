@@ -1,24 +1,41 @@
 * {
   font-family: Helvetica, Arial, sans-serif;
-  border: 1px solid blue;
+  border-radius: 5px;
+  /*border: 1px solid blue;*/
 }
 
 body {
   text-align: center;
   border: 2px solid darkgrey;
   background-color: lightgrey;
+  margin: 10px;
+  padding: 10px;
 }
 
 h1  {
   font-size: 30px;
   font-weight: bolder;
+  border: 3px solid darkgrey;
+
 }
 
 h4 {
   font-size: 20px;
   font-weight: bold;
+  border: 2px solid darkgrey;
 }
 
 p {
+  border: 2px solid darkgrey;
+}
 
+section {
+  border: 2px solid darkgrey;
+  background-color: lightgrey;
+
+}
+
+#Item {
+  display: block;
+  padding: 20px 10px;
 }
