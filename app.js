@@ -19,7 +19,7 @@ new Item('breakfast', 'images/breakfast.jpg');
 new Item('bubblegum', 'images/bubblegum.jpg');
 new Item('chair', 'images/chair.jpg');
 new Item('thing', 'images/cthulhu.jpg');
-new Item('duck-dog', 'images/duck-dog.jpg');
+new Item('duck-dog', 'images/dog-duck.jpg');
 new Item('dragon', 'images/dragon.jpg');
 new Item('pen', 'images/pen.jpg');
 new Item('pet-sweep', 'images/pet-sweep.jpg');
@@ -47,11 +47,6 @@ function randomItem() {
   right.src = allItems[randomNumber()].filepath;
 }
 randomItem();
-
-//
-
-//
-//I need something to display images side-by-side on the web page
 
 //
 //I need to display random images, non repeating from previously or current 3

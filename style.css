@@ -12,11 +12,10 @@ body {
   padding: 10px;
 }
 
-h1  {
+h1 {
   font-size: 30px;
   font-weight: bolder;
   border: 3px solid darkgrey;
-
 }
 
 h4 {
@@ -32,10 +31,21 @@ p {
 section {
   border: 2px solid darkgrey;
   background-color: lightgrey;
-
 }
 
 #Item {
   display: block;
   padding: 20px 10px;
+}
+
+#left {
+  border: 3px solid black;
+}
+
+#center {
+  border: 3px solid black;
+}
+
+#right {
+  border: 3px solid black;
 }
