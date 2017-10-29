@@ -37,15 +37,7 @@ section {
   display: block;
   padding: 20px 10px;
 }
-
-#left {
-  border: 3px solid black;
-}
-
-#center {
-  border: 3px solid black;
-}
-
-#right {
-  border: 3px solid black;
-}
+#Item img
+  {
+    border: 3px solid black;
+  }

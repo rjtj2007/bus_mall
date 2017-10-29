@@ -2,6 +2,8 @@
 console.log('Good Morning!');
 //array for object storage
 var allItems = [];
+var clickItems = [];
+var parentImageNode = document.getElementById('Item');
 console.log(allItems);
 //object with constructor function
 function Item(name, filepath) {
@@ -32,22 +34,58 @@ new Item('usb', 'images/usb.gif');
 new Item('water-can', 'images/water-can.jpg');
 new Item('wine-glass', 'images/wine-glass.jpg');
 
-// //event listener
-var imgEl = document.getElementById('Item');
-imgEl.addEventListener('click', randomItem);
+//initialize image object
+var imgEl = {};
 
 //display picture randomly
 
 function randomNumber() {
   return Math.floor(Math.random() * allItems.length);
 }
-function randomItem() {
-  left.src = allItems[randomNumber()].filepath;
-  center.src = allItems[randomNumber()].filepath;
-  right.src = allItems[randomNumber()].filepath;
-}
-randomItem();
 
+function randomItem() {
+  //hodl parent element in a variable
+  var parentElem = document.getElementById('Item');
+  //loop 3 times for 3 images
+  for (var i = 0; i < 3; i++) {
+    //check if imgEl object is empty (it will be on initial load) if it has items in it, clear them
+    if(Object.keys(imgEl).length > 0){
+      removeElement(parentImageNode, imgEl[i]);
+    }
+    //create image attribut object for each image
+    var attributes = new function() {
+      this.random = allItems[randomNumber()];
+      this.imageSource = this.random.filepath;
+      this.id = this.random.name;
+    };
+    //creat a new image element for the DOM
+    var img = document.createElement('IMG');
+    img.src = attributes.imageSource;
+    img.id = attributes.id;
+    parentElem.appendChild(img);
+  }
+  //store new images to attach event listener to.
+  imgEl = document.getElementById('Item').children;
+  handleClick();
+}
+
+randomItem();
+//event listener
+//loop through the imgEl object which should only have 3 images
+function handleClick() {
+  for (var i = 0; i < imgEl.length; i++) {
+    imgEl[i].addEventListener('click', function(e) {
+      clickItems.push(this.id);
+      console.log(clickItems);
+
+      randomItem();
+    });
+  }
+}
+function removeElement(parent, node){
+  //prevent memory leak by removing eventListener if needed.
+  parent.removeChild(node);
+}
 //
 //I need to display random images, non repeating from previously or current 3
 
@@ -70,33 +108,3 @@ randomItem();
 //   }
 //   lastIndex = [];
 //
-//  lastIndex.push(randomIndex1);
-//   lastIndex.push(randomIndex2);
-//   lastIndex.push(randomIndex3);
-//
-//  //reassigning the variables foreach picture
-//   randomIndex1 = Math.floor(Math.random() * itemArray.length);
-//   randomIndex2 = Math.floor(Math.random() * itemArray.length);
-//   randomIndex3 = Math.floor(Math.random() * itemArray.length);
-//
-//  //while loop to stop items doubling up or diplaying right after another
-//
-//  while (randomIndex1 === lastIndex[0] || randomIndex1 === lastIndex[1] || randomIndex1 === lastIndex[2] || randomIndex2 === lastIndex[0] || randomIndex2 === lastIndex[1] || randomIndex2 === lastIndex[2] || randomIndex3 === lastIndex[0] || randomIndex3 === lastIndex[1] || randomIndex3 === lastIndex[2] || randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3) {
-//
-//    randomIndex1 = Math.floor(Math.random() * itemArray.length);
-//     randomIndex2 = Math.floor(Math.random() * itemArray.length);
-//     randomIndex3 = Math.floor(Math.random() * itemArray.length);
-//   }
-//
-//  //image sources
-//   leftImg.src = itemArray[randomIndex1].filePath;
-//   centerImg.src = itemArray[randomIndex2].filePath;
-//   rightImg.src = itemArray[randomIndex3].filePath;
-//
-//  //adds 1 to times displayed for each object
-//
-//  itemArray[randomIndex1].timesDisplayed += 1;
-//   itemArray[randomIndex2].timesDisplayed += 1;
-//   itemArray[randomIndex3].timesDisplayed += 1;
-//
-// }
