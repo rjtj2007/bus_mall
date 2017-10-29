@@ -2,7 +2,7 @@
 console.log('Good Morning!');
 //array for object storage
 var allItems = [];
-
+console.log(allItems);
 //object with constructor function
 function Item(name, filepath) {
   this.name = name;
@@ -37,14 +37,35 @@ var imgEl = document.getElementById('Item');
 imgEl.addEventListener('click', randomItem);
 
 //display picture randomly
+
+function randomNumber() {
+  return Math.floor(Math.random() * allItems.length);
+}
 function randomItem() {
-  var randomIndex = Math.floor(Math.random() * allItems.length);
-  return allItems[randomItem].filepath;
+  left.src = allItems[randomNumber()].filepath;
+  center.src = allItems[randomNumber()].filepath;
+  right.src = allItems[randomNumber()].filepath;
 }
 randomItem();
+
 //
+
 //
+//I need something to display images side-by-side on the web page
+
 //
+//I need to display random images, non repeating from previously or current 3
+
+//
+//I need something that tracks number of clicks on select item and number of times item is displayed
+
+//
+//I need let the random display function run 25 times and then turn off
+
+//
+//After the 25th round turn off event listener and display results in a string
+//                                                    '# of votes for item name'
+
 //
 //
 //
