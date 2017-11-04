@@ -1,5 +1,4 @@
 'use strict';
-
 console.log('Good Morning!');
 
 var catalogueImages = [];
@@ -12,7 +11,7 @@ var holdingArray = [];
 var pageTotalClicks = 0;
 
 //constructor funciton
-function MakeCatalogue(name, filePath) {
+function Item(name, filePath) {
   this.name = name;
   this.filePath = filePath;
   this.shown = 0;
@@ -22,28 +21,29 @@ function MakeCatalogue(name, filePath) {
 
 //constructor call
 function MakeItem() {
-  new Item('bag', 'images/bag.jpg');
-  new Item('banana', 'images/banana.jpg');
-  new Item('bathroom', 'images/bathroom.jpg');
-  new Item('boots', 'images/boots.jpg');
-  new Item('breakfast', 'images/breakfast.jpg');
-  new Item('bubblegum', 'images/bubblegum.jpg');
-  new Item('chair', 'images/chair.jpg');
-  new Item('cthulhu', 'images/cthulhu.jpg');
-  new Item('duck-dog', 'images/dog-duck.jpg');
-  new Item('dragon', 'images/dragon.jpg');
-  new Item('pen', 'images/pen.jpg');
-  new Item('pet-sweep', 'images/pet-sweep.jpg');
-  new Item('scissors', 'images/scissors.jpg');
-  new Item('shark', 'images/shark.jpg');
-  new Item('sweep', 'images/sweep.png');
-  new Item('tauntaun', 'images/tauntaun.jpg');
-  new Item('unicorn', 'images/unicorn.jpg');
-  new Item('usb', 'images/usb.gif');
-  new Item('water-can', 'images/water-can.jpg');
-  new Item('wine-glass', 'images/wine-glass.jpg');
+  new Item('bag', './images/bag.jpg');
+  new Item('banana', './images/banana.jpg');
+  new Item('bathroom', './images/bathroom.jpg');
+  new Item('boots', './images/boots.jpg');
+  new Item('breakfast', './images/breakfast.jpg');
+  new Item('bubblegum', './images/bubblegum.jpg');
+  new Item('chair', './images/chair.jpg');
+  new Item('cthulhu', './images/cthulhu.jpg');
+  new Item('duck-dog', './images/dog-duck.jpg');
+  new Item('dragon', './images/dragon.jpg');
+  new Item('pen', './images/pen.jpg');
+  new Item('pet-sweep', './images/pet-sweep.jpg');
+  new Item('scissors', './images/scissors.jpg');
+  new Item('shark', './images/shark.jpg');
+  new Item('sweep', './images/sweep.png');
+  new Item('tauntaun', './images/tauntaun.jpg');
+  new Item('unicorn', './images/unicorn.jpg');
+  new Item('usb', './images/usb.gif');
+  new Item('water-can', './images/water-can.jpg');
+  new Item('wine-glass', './images/wine-glass.jpg');
 }
-
+MakeItem();
+// add event listener to page clicks
 imgEl1.addEventListener('click', totalClicks1);
 imgEl2.addEventListener('click', totalClicks2);
 imgEl3.addEventListener('click', totalClicks3);
@@ -53,14 +53,17 @@ function randomNumber() {
   return Math.floor(Math.random() * catalogueImages.length);
 }
 
-for (var i = 0; i < catalogueImages.length; i++) {
+for (var i = 0; i < 3; i++) {
   var num1 = randomNumber();
   var num2 = randomNumber();
   var num3 = randomNumber();
 
-  while (num1 !== num2 || num1 !== num3 || num2 !== num3) {
-  }
-  imgEl.src = catalogueImages(num1);
+  // while (num1 !== num2 || num1 !== num3 || num2 !== num3) {
+  // }
+  //display images randomly for initial page load
+  imgEl1.src = catalogueImages[num1].filePath;
+  imgEl2.src = catalogueImages[num2].filePath;
+  imgEl3.src = catalogueImages[num3].filePath;
 }
 
 function totalClicks1() {
