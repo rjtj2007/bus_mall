@@ -49,3 +49,7 @@ section {
 #list {
   text-align: left;
 }
+#chart {
+  width: 75%;
+  height: 500px;
+}
