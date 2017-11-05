@@ -1,110 +1,153 @@
 'use strict';
-console.log('Good Morning!');
-//array for object storage
-var allItems = [];
-var clickItems = [];
-var parentImageNode = document.getElementById('Item');
-console.log(allItems);
-//object with constructor function
-function Item(name, filepath) {
+
+var allItem = [];
+var queue = [];
+var image1 = document.getElementById('image1');
+var image2 = document.getElementById('image2');
+var image3 = document.getElementById('image3');
+var totalClicks = 0;
+
+//constructor funciton
+function Item(name, filePath) {
   this.name = name;
-  this.filepath = filepath;
-  allItems.push(this);
+  this.filePath = filePath;
+  this.shown = 0;
+  this.clicked = 0;
+  allItem.push(this);
 }
 
-// //make new instance of items for above function
-new Item('bag', 'images/bag.jpg');
-new Item('banana', 'images/banana.jpg');
-new Item('bathroom', 'images/bathroom.jpg');
-new Item('boots', 'images/boots.jpg');
-new Item('breakfast', 'images/breakfast.jpg');
-new Item('bubblegum', 'images/bubblegum.jpg');
-new Item('chair', 'images/chair.jpg');
-new Item('thing', 'images/cthulhu.jpg');
-new Item('duck-dog', 'images/dog-duck.jpg');
-new Item('dragon', 'images/dragon.jpg');
-new Item('pen', 'images/pen.jpg');
-new Item('pet-sweep', 'images/pet-sweep.jpg');
-new Item('scissors', 'images/scissors.jpg');
-new Item('shark', 'images/shark.jpg');
-new Item('sweep', 'images/sweep.png');
-new Item('tauntaun', 'images/tauntaun.jpg');
-new Item('unicorn', 'images/unicorn.jpg');
-new Item('usb', 'images/usb.gif');
-new Item('water-can', 'images/water-can.jpg');
-new Item('wine-glass', 'images/wine-glass.jpg');
+//constructor call
+function makeItem() {
+  new Item('bag', 'images/bag.jpg');
+  new Item('banana', 'images/banana.jpg');
+  new Item('bathroom', 'images/bathroom.jpg');
+  new Item('boots', 'images/boots.jpg');
+  new Item('breakfast', 'images/breakfast.jpg');
+  new Item('bubblegum', 'images/bubblegum.jpg');
+  new Item('chair', 'images/chair.jpg');
+  new Item('cthulhu', 'images/cthulhu.jpg');
+  new Item('duck-dog', 'images/dog-duck.jpg');
+  new Item('dragon', 'images/dragon.jpg');
+  new Item('pen', 'images/pen.jpg');
+  new Item('pet-sweep', 'images/pet-sweep.jpg');
+  new Item('scissors', 'images/scissors.jpg');
+  new Item('shark', 'images/shark.jpg');
+  new Item('sweep', 'images/sweep.png');
+  new Item('tauntaun', 'images/tauntaun.jpg');
+  new Item('unicorn', 'images/unicorn.jpg');
+  new Item('usb', 'images/usb.gif');
+  new Item('water-can', 'images/water-can.jpg');
+  new Item('wine-glass', 'images/wine-glass.jpg');
+};
+makeItem();
 
-//initialize image object
-var imgEl = {};
-
-//display picture randomly
-
+//use for all instances of random number
 function randomNumber() {
-  return Math.floor(Math.random() * allItems.length);
+  return Math.floor(Math.random() * 20);
 }
 
-function randomItem() {
-  //hodl parent element in a variable
-  var parentElem = document.getElementById('Item');
-  //loop 3 times for 3 images
-  for (var i = 0; i < 3; i++) {
-    //check if imgEl object is empty (it will be on initial load) if it has items in it, clear them
-    if(Object.keys(imgEl).length > 0){
-      removeElement(parentImageNode, imgEl[i]);
-    }
-    //create image attribut object for each image
-    var attributes = new function() {
-      this.random = allItems[randomNumber()];
-      this.imageSource = this.random.filepath;
-      this.id = this.random.name;
-    };
-    //creat a new image element for the DOM
-    var img = document.createElement('IMG');
-    img.src = attributes.imageSource;
-    img.id = attributes.id;
-    parentElem.appendChild(img);
+for (var i = 0; i < 6; i++) {
+  queue.push(randomNumber());
+}
+
+function random3Numbers() {
+  //first random number
+  var number1 = randomNumber();
+  while (queue.indexOf(number1) >= 0) {
+    number1 = randomNumber();
   }
-  //store new images to attach event listener to.
-  imgEl = document.getElementById('Item').children;
-  handleClick();
+  queue.push(number1);
+  queue.shift();
+  console.log('new queue with number1 ' + queue);
+
+  //second random number
+  var number2 = randomNumber();
+  while (queue.indexOf(number2) >= 0) {
+    number2 = randomNumber();
+  }
+  queue.push(number2);
+  queue.shift();
+  console.log('new queue with number2 ' + queue);
+
+  //third random number
+  var number3 = randomNumber();
+  while (queue.indexOf(number3) >= 0) {
+    number3 = randomNumber();
+  }
+  queue.push(number3);
+  queue.shift();
+  console.log('new queue with number3 ' + queue);
+}
+random3Numbers();
+
+//make 3 seperate images for display
+function make3Images() {
+  var firstImageFilePath = allItem[queue[3]].filePath;
+  allItem[queue[3]].shown++;
+  var secondImageFilePath = allItem[queue[4]].filePath;
+  allItem[queue[4]].shown++;
+  var thirdImageFilePath = allItem[queue[5]].filePath;
+  allItem[queue[5]].shown++;
+  image1.src = firstImageFilePath;
+  image2.src = secondImageFilePath;
+  image3.src = thirdImageFilePath;
+}
+make3Images();
+
+if (totalClicks > 23) {
+  image3.removeEventListener('click', image3Click);
 }
 
-randomItem();
-//event listener
-//loop through the imgEl object which should only have 3 images
-function handleClick() {
-  for (var i = 0; i < imgEl.length; i++) {
-    imgEl[i].addEventListener('click', function(e) {
-      clickItems.push(this.id);
-      console.log(clickItems);
-
-      randomItem();
-    });
+//add event listener for 1 2 3
+function image1Click() {
+  if (totalClicks > 23) {
+    image1.removeEventListener('click', image1Click);
+    makeList();
+  } else {
+    allItem[queue[3]].clicked++;
+    totalClicks++;
+    console.log('image 1 ' + allItem[queue[3]].name + allItem[queue[3]].clicked);
+    random3Numbers();
+    make3Images();
+    console.log('totalClicks ' + totalClicks);
   }
 }
-function removeElement(parent, node){
-  //prevent memory leak by removing eventListener if needed.
-  parent.removeChild(node);
+image1.addEventListener('click', image1Click);
+
+function image2Click() {
+  if (totalClicks > 23) {
+    image2.removeEventListener('click', image2Click);
+    makeList();
+  } else {
+    allItem[queue[4]].clicked++;
+    totalClicks++;
+    console.log('image 2 ' + allItem[queue[4]].name + allItem[queue[4]].clicked);
+    random3Numbers();
+    make3Images();
+  }
 }
-//
-//I need to display random images, non repeating from previously or current 3
+image2.addEventListener('click', image2Click);
 
-//
-//I need something that tracks number of clicks on select item and number of times item is displayed
+function image3Click() {
+  if (totalClicks > 25) {
+    image3.removeEventListener('click', image3Click);
+    makeList();
+  } else {
+    allItem[queue[5]].clicked++;
+    totalClicks++;
+    console.log('image 3 ' + allItem[queue[5]].name + allItem[queue[5]].clicked);
+    random3Numbers();
+    make3Images();
+  }
+}
+image3.addEventListener('click', image3Click);
 
-//
-//I need let the random display function run 25 times and then turn off
-
-//
-//After the 25th round turn off event listener and display results in a string
-//                                                    '# of votes for item name'
-
-//
-//
-//
-// function images() {
-//   if (surveyLength > 24) {
-//     surveyEnd();
-//   }
-//   lastIndex = [];
-//
+function makeList() {
+  console.log('test');
+  var ulEl = document.getElementById('listResults');
+  for (var i = 0; i < allItem.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = allItem[i].name + ' was displayed ' + allItem[i].shown + ' was clicked ' + allItem[i].clicked + ' times.';
+    ulEl.appendChild(liEl);
+  }
+}
