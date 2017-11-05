@@ -102,7 +102,7 @@ if (totalClicks > 23) {
 function image1Click() {
   if (totalClicks > 23) {
     image1.removeEventListener('click', image1Click);
-    makeList();
+    createChart();
   } else {
     allItem[queue[3]].clicked++;
     totalClicks++;
@@ -117,7 +117,7 @@ image1.addEventListener('click', image1Click);
 function image2Click() {
   if (totalClicks > 23) {
     image2.removeEventListener('click', image2Click);
-    makeList();
+    createChart();
   } else {
     allItem[queue[4]].clicked++;
     totalClicks++;
@@ -131,7 +131,7 @@ image2.addEventListener('click', image2Click);
 function image3Click() {
   if (totalClicks > 25) {
     image3.removeEventListener('click', image3Click);
-    makeList();
+    createChart();
   } else {
     allItem[queue[5]].clicked++;
     totalClicks++;
@@ -142,12 +142,46 @@ function image3Click() {
 }
 image3.addEventListener('click', image3Click);
 
-function makeList() {
-  console.log('test');
-  var ulEl = document.getElementById('listResults');
+//create new chart
+function createChart() {
+  var names = [];
+  var data = [];
+  var labelColors = ['#e6194b', '#3cb44b', '#ffe119', '#0082c8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000080',];
   for (var i = 0; i < allItem.length; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = allItem[i].name + ' was displayed ' + allItem[i].shown + ' was clicked ' + allItem[i].clicked + ' times.';
-    ulEl.appendChild(liEl);
+    names.push(allItem[i].name);
+    data.push(allItem[i].clicked);
   }
+
+  var ctx = document.getElementById('chart').getContext('2d');
+
+  var chartData = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '# of clicks',
+        data: data,
+        backgroundColor: labelColors
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+  console.log(chartData);
 }
+// function makeList() {
+//   console.log('test');
+//   var ulEl = document.getElementById('listResults');
+//   for (var i = 0; i < allItem.length; i++) {
+//     var liEl = document.createElement('li');
+//     liEl.textContent = allItem[i].name + ' was displayed ' + allItem[i].shown + ' was clicked ' + allItem[i].clicked + ' times.';
+//     ulEl.appendChild(liEl);
+//   }
+// }
