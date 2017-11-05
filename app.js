@@ -94,13 +94,13 @@ function make3Images() {
 }
 make3Images();
 
-if (totalClicks > 3) {
+if (totalClicks > 23) {
   image3.removeEventListener('click', image3Click);
 }
 
 //add event listener for 1 2 3
 function image1Click() {
-  if (totalClicks > 3) {
+  if (totalClicks > 23) {
     image1.removeEventListener('click', image1Click);
     makeList();
   } else {
@@ -115,7 +115,7 @@ function image1Click() {
 image1.addEventListener('click', image1Click);
 
 function image2Click() {
-  if (totalClicks > 3) {
+  if (totalClicks > 23) {
     image2.removeEventListener('click', image2Click);
     makeList();
   } else {
@@ -129,7 +129,7 @@ function image2Click() {
 image2.addEventListener('click', image2Click);
 
 function image3Click() {
-  if (totalClicks > 3) {
+  if (totalClicks > 25) {
     image3.removeEventListener('click', image3Click);
     makeList();
   } else {

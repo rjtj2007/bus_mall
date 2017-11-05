@@ -13,24 +13,28 @@ body {
 }
 
 h1 {
+  position: relative;
   font-size: 30px;
   font-weight: bolder;
   border: 3px solid darkgrey;
 }
 
 h4 {
+  position: relative;
   font-size: 20px;
   font-weight: bold;
   border: 2px solid darkgrey;
 }
 
 p {
+  position: relative;
   border: 2px solid darkgrey;
 }
 
 section {
+  position: relative;
   border: 2px solid darkgrey;
-  background-color: lightgrey;
+  background-color: white;
 }
 
 #Item {
@@ -41,3 +45,7 @@ section {
   {
     border: 3px solid black;
   }
+
+#list {
+  text-align: left;
+}
