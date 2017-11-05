@@ -6,6 +6,7 @@ var queue = [];
 var image1 = document.getElementById('image1');
 var image2 = document.getElementById('image2');
 var image3 = document.getElementById('image3');
+var totalClicks = 0;
 // var status = document.getElementById('status');
 // var holdingArray = [];
 // var counter = 0;
@@ -101,26 +102,40 @@ function make3Images() {
 }
 make3Images();
 
-//add event listener for 1\ 2 3
-image1.addEventListener('click', function() {
+if (totalClicks > 3) {
+  image1.removeEventListener('click', image1Click);
+  image2.removeEventListener('click', image2Click);
+  image3.removeEventListener('click', image3Click);
+}
+
+//add event listener for 1 2 3
+function image1Click() {
   allItem[queue[3]].clicked++;
+  totalClicks++;
   console.log('image 1 ' + allItem[queue[3]].name + allItem[queue[3]].clicked);
   random3Numbers();
   make3Images();
-});
-image2.addEventListener('click', function() {
+  console.log('totalClicks ' + totalClicks);
+}
+image1.addEventListener('click', image1Click);
+
+function image2Click() {
   allItem[queue[4]].clicked++;
+  totalClicks++;
   console.log('image 2 ' + allItem[queue[4]].name + allItem[queue[4]].clicked);
   random3Numbers();
   make3Images();
-});
-image3.addEventListener('click', function() {
+}
+image2.addEventListener('click', image2Click);
+
+function image3Click() {
   allItem[queue[5]].clicked++;
+  totalClicks++;
   console.log('image 3 ' + allItem[queue[5]].name + allItem[queue[5]].clicked);
   random3Numbers();
   make3Images();
-});
-
+}
+image3.addEventListener('click', image3Click);
 
 //
 // function totalClicks1() {
