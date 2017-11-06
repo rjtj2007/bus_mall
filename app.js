@@ -1,6 +1,15 @@
 'use strict';
 
 var allItem = [];
+
+//local storage
+if (localStorage.getItem('storeData')) {
+  allItem = [];
+  allItem = JSON.parse(localStorage.getItem('storeData'));
+} else {
+  makeItem();
+};
+
 var queue = [];
 var image1 = document.getElementById('image1');
 var image2 = document.getElementById('image2');
@@ -94,15 +103,15 @@ function make3Images() {
 }
 make3Images();
 
-if (totalClicks > 23) {
-  image3.removeEventListener('click', image3Click);
-}
-
 //add event listener for 1 2 3
 function image1Click() {
   if (totalClicks > 23) {
     image1.removeEventListener('click', image1Click);
     createChart();
+    //add JSON stringify
+    var allItemString = JSON.stringify(allItem);
+    localStorage.setItem('storeData', allItemString);
+    return;
   } else {
     allItem[queue[3]].clicked++;
     totalClicks++;
@@ -118,6 +127,10 @@ function image2Click() {
   if (totalClicks > 23) {
     image2.removeEventListener('click', image2Click);
     createChart();
+    //add JSON stringify
+    var allItemString = JSON.stringify(allItem);
+    localStorage.setItem('storeData', allItemString);
+    return;
   } else {
     allItem[queue[4]].clicked++;
     totalClicks++;
@@ -129,9 +142,13 @@ function image2Click() {
 image2.addEventListener('click', image2Click);
 
 function image3Click() {
-  if (totalClicks > 25) {
+  if (totalClicks > 23) {
     image3.removeEventListener('click', image3Click);
     createChart();
+    //add JSON stringify
+    var allItemString = JSON.stringify(allItem);
+    localStorage.setItem('storeData', allItemString);
+    return;
   } else {
     allItem[queue[5]].clicked++;
     totalClicks++;
@@ -146,7 +163,7 @@ image3.addEventListener('click', image3Click);
 function createChart() {
   var names = [];
   var data = [];
-  var labelColors = ['#e6194b', '#3cb44b', '#ffe119', '#0082c8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000080',];
+  var labelColors = ['crimson', 'maroon', 'coral', 'mistyrose', 'deeppink', 'fuchsia', 'chartruse', 'darkorange', 'orange', 'gold', 'yellow', 'greenyellow', 'green', 'darkcyan', 'cyan', 'cadetblue', 'blue', 'navy', 'indigo', 'blueviolet'];
   for (var i = 0; i < allItem.length; i++) {
     names.push(allItem[i].name);
     data.push(allItem[i].clicked);
@@ -154,7 +171,7 @@ function createChart() {
 
   var ctx = document.getElementById('chart').getContext('2d');
 
-  var chartData = new Chart(ctx, {
+  var storeData = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: names,
@@ -168,13 +185,14 @@ function createChart() {
       scales: {
         yAxes: [{
           ticks: {
+            stepSize: 1,
             beginAtZero: true
           }
         }]
       }
     }
   });
-  console.log(chartData);
+  console.log(storeData);
 }
 // function makeList() {
 //   console.log('test');
