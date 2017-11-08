@@ -110,7 +110,7 @@ function image1Click() {
     createChart();
     //add JSON stringify
     var allItemString = JSON.stringify(allItem);
-    localStorage.setItem('storeData', allItemString);
+    localStorage.setItem('createChart', allItemString);
     return;
   } else {
     allItem[queue[3]].clicked++;
@@ -129,7 +129,7 @@ function image2Click() {
     createChart();
     //add JSON stringify
     var allItemString = JSON.stringify(allItem);
-    localStorage.setItem('storeData', allItemString);
+    localStorage.setItem('createChart', allItemString);
     return;
   } else {
     allItem[queue[4]].clicked++;
@@ -147,7 +147,7 @@ function image3Click() {
     createChart();
     //add JSON stringify
     var allItemString = JSON.stringify(allItem);
-    localStorage.setItem('storeData', allItemString);
+    localStorage.setItem('createChart', allItemString);
     return;
   } else {
     allItem[queue[5]].clicked++;
