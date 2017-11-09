@@ -3,9 +3,9 @@
 var allItem = [];
 
 //local storage
-if (localStorage.getItem('storeData')) {
+if (localStorage.getItem('createChart')) {
   allItem = [];
-  allItem = JSON.parse(localStorage.getItem('storeData'));
+  allItem = JSON.parse(localStorage.getItem('createChart'));
 } else {
   makeItem();
 };
@@ -67,7 +67,6 @@ function random3Numbers() {
   }
   queue.push(number1);
   queue.shift();
-  console.log('new queue with number1 ' + queue);
 
   //second random number
   var number2 = randomNumber();
@@ -76,7 +75,6 @@ function random3Numbers() {
   }
   queue.push(number2);
   queue.shift();
-  console.log('new queue with number2 ' + queue);
 
   //third random number
   var number3 = randomNumber();
@@ -85,7 +83,6 @@ function random3Numbers() {
   }
   queue.push(number3);
   queue.shift();
-  console.log('new queue with number3 ' + queue);
 }
 random3Numbers();
 
@@ -115,7 +112,6 @@ function image1Click() {
   } else {
     allItem[queue[3]].clicked++;
     totalClicks++;
-    console.log('image 1 ' + allItem[queue[3]].name + allItem[queue[3]].clicked);
     random3Numbers();
     make3Images();
     console.log('totalClicks ' + totalClicks);
@@ -134,9 +130,9 @@ function image2Click() {
   } else {
     allItem[queue[4]].clicked++;
     totalClicks++;
-    console.log('image 2 ' + allItem[queue[4]].name + allItem[queue[4]].clicked);
     random3Numbers();
     make3Images();
+    console.log('totalClicks ' + totalClicks);
   }
 }
 image2.addEventListener('click', image2Click);
@@ -152,9 +148,9 @@ function image3Click() {
   } else {
     allItem[queue[5]].clicked++;
     totalClicks++;
-    console.log('image 3 ' + allItem[queue[5]].name + allItem[queue[5]].clicked);
     random3Numbers();
     make3Images();
+    console.log('totalClicks ' + totalClicks);
   }
 }
 image3.addEventListener('click', image3Click);
@@ -167,6 +163,8 @@ function createChart() {
   for (var i = 0; i < allItem.length; i++) {
     names.push(allItem[i].name);
     data.push(allItem[i].clicked);
+    console.log(allItem[i].name);
+    console.log(allItem[i].clicked);
   }
 
   var ctx = document.getElementById('chart').getContext('2d');
