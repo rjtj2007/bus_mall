@@ -37,6 +37,12 @@ section {
   background-color: white;
 }
 
+img {
+  height: 275px;
+  width: 275px;
+  padding-left: 10px;
+}
+
 #Item {
   display: block;
   padding: 20px 10px;
@@ -49,7 +55,8 @@ section {
 #list {
   text-align: left;
 }
+
 #chart {
-  width: 75%;
-  height: 500px;
+  width: 700px;
+  height: 300px;
 }
